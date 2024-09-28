@@ -1,0 +1,17 @@
+server:
+     port: 8080
+     servlet:
+          context-path: /api
+spring:
+     application:
+          name: SneakZoneOfflineBoot
+     datasource:
+          url: jdbc:mariadb://localhost:3306/sneak_zoneDB
+          username: root
+          password: 123456
+          driver-class-name: org.mariadb.jdbc.Driver
+     jpa:
+          show-sql: true
+          open-in-view: true
+jwt:
+     secret-key: SpS+ptkpqPnbQy03HX0YR3KR+yMNI4lr1NsF7Ao6P5biJx9B1KJm4Sv+6vQfLV4d
