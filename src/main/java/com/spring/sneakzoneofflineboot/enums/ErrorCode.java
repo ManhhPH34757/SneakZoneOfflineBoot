@@ -18,6 +18,13 @@ public enum ErrorCode {
      USER_EXISTED(400, "User already exists", HttpStatus.BAD_REQUEST),
      USER_NOT_EXISTED(404, "User not found", HttpStatus.NOT_FOUND),
      INVALID_KEY(402, "Invalid key", HttpStatus.BAD_REQUEST),
+     BRAND_NOT_EXISTED(404, "Brand not found", HttpStatus.NOT_FOUND),
+     CATEGORY_NOT_EXISTED(404, "Category not found", HttpStatus.NOT_FOUND),
+     MATERIAL_NOT_EXISTED(404, "Material not found", HttpStatus.NOT_FOUND),
+     SOLE_NOT_EXISTED(404, "Sole not found", HttpStatus.NOT_FOUND),
+     PRODUCT_NOT_EXISTED(404, "Product not found", HttpStatus.NOT_FOUND),
+     COLOR_NOT_EXISTED(404, "Color not found", HttpStatus.NOT_FOUND),
+     SIZE_NOT_EXISTED(404, "Size not found", HttpStatus.NOT_FOUND),
      ;
 
      Integer code;

@@ -39,7 +39,7 @@ public class AuthService {
 
      public AccountResponse authenticated(AccountRequest request) {
           var staff = staffRepository.findByUsername(request.getUsername()).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
-          boolean authenticated = passwordEncoder.matches(request.getPassword(), staff.getPassword());
+          boolean authenticated = checkPassword(request.getPassword(), staff.getPassword());
           if (!authenticated) {
                throw new AppException(ErrorCode.UNAUTHENTICATED);
           }
@@ -75,5 +75,9 @@ public class AuthService {
           } catch (Exception e) {
                throw new RuntimeException(e);
           }
+     }
+
+     public boolean checkPassword(String password, String passwordEncoded) {
+          return passwordEncoder.matches(password, passwordEncoded);
      }
 }

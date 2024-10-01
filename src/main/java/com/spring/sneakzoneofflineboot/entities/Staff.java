@@ -21,7 +21,6 @@ public class Staff {
      @Size(max = 255)
      @ColumnDefault("uuid()")
      @Column(name = "id", nullable = false)
-     @GeneratedValue(strategy = GenerationType.UUID)
      private String id;
 
      @Size(max = 100)
