@@ -9,6 +9,9 @@ Run `mvn spring-boot:run` for a dev server. Navigate to `http://localhost:8080/`
 ### Edit the application.yaml file according to the settings on your system
 
  datasource:
+ 
       url: jdbc:mariadb://localhost:your_host/sneak_zoneDB
+      
       username: your_username
+      
       password: your_password
