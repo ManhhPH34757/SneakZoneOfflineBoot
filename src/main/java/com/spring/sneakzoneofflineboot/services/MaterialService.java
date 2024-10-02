@@ -34,6 +34,15 @@ public class MaterialService implements UtilityServices <Material, String> {
      }
 
      @Override
+     public Material update(Material entity, String id) {
+          if (!materialRepository.existsById(id)) {
+               throw new AppException(ErrorCode.MATERIAL_NOT_EXISTED);
+          }
+          entity.setId(id);
+          return materialRepository.save(entity);
+     }
+
+     @Override
      public void deleteById(String id) {
           if (!materialRepository.existsById(id)) {
                throw new AppException(ErrorCode.MATERIAL_NOT_EXISTED);

@@ -34,6 +34,15 @@ public class SoleService implements UtilityServices <Sole, String> {
      }
 
      @Override
+     public Sole update(Sole entity, String id) {
+          if (!soleRepository.existsById(id)) {
+               throw new AppException(ErrorCode.SOLE_NOT_EXISTED);
+          }
+          entity.setId(id);
+          return soleRepository.save(entity);
+     }
+
+     @Override
      public void deleteById(String id) {
           if (!soleRepository.existsById(id)) {
                throw new AppException(ErrorCode.SOLE_NOT_EXISTED);
