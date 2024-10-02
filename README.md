@@ -15,3 +15,7 @@ Run `mvn spring-boot:run` for a dev server. Navigate to `http://localhost:8080/`
       username: your_username
       
       password: your_password
+
+### Link DB
+
+`https://github.com/ManhhPH34757/ShoeStoreDatabase`
