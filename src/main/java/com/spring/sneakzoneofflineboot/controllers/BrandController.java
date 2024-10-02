@@ -4,10 +4,7 @@ import com.spring.sneakzoneofflineboot.dto.response.ApiResponse;
 import com.spring.sneakzoneofflineboot.entities.Brand;
 import com.spring.sneakzoneofflineboot.utils.UtilityController;
 import com.spring.sneakzoneofflineboot.utils.UtilityServices;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,4 +28,21 @@ public class BrandController extends UtilityController<Brand, String> {
           return super.getById(id);
      }
 
+     @PostMapping()
+     @Override
+     public ApiResponse<Brand> save(@RequestBody Brand entity) {
+          return super.save(entity);
+     }
+
+     @PutMapping("/{id}")
+     @Override
+     public ApiResponse<Brand> update(@RequestBody Brand entity, @PathVariable String id) {
+          return super.update(entity, id);
+     }
+
+     @DeleteMapping("/{id}")
+     @Override
+     public ApiResponse<Void> deleteById(@PathVariable String id) {
+          return super.deleteById(id);
+     }
 }

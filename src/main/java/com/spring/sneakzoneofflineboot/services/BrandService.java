@@ -34,6 +34,15 @@ public class BrandService implements UtilityServices<Brand, String> {
      }
 
      @Override
+     public Brand update(Brand entity, String id) {
+          if (!brandRepository.existsById(id)) {
+               throw new AppException(ErrorCode.BRAND_NOT_EXISTED);
+          }
+          entity.setId(id);
+          return brandRepository.save(entity);
+     }
+
+     @Override
      public void deleteById(String id) {
           if (!brandRepository.existsById(id)) {
                throw new AppException(ErrorCode.BRAND_NOT_EXISTED);

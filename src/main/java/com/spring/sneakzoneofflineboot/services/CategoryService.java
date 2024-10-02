@@ -34,6 +34,15 @@ public class CategoryService implements UtilityServices <Category, String>{
      }
 
      @Override
+     public Category update(Category entity, String id) {
+          if (!categoryRepository.existsById(id)) {
+               throw new AppException(ErrorCode.CATEGORY_NOT_EXISTED);
+          }
+          entity.setId(id);
+          return categoryRepository.save(entity);
+     }
+
+     @Override
      public void deleteById(String id) {
           if (!categoryRepository.existsById(id)) {
                throw new AppException(ErrorCode.CATEGORY_NOT_EXISTED);

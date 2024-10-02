@@ -4,10 +4,7 @@ import com.spring.sneakzoneofflineboot.dto.response.ApiResponse;
 import com.spring.sneakzoneofflineboot.entities.Category;
 import com.spring.sneakzoneofflineboot.utils.UtilityController;
 import com.spring.sneakzoneofflineboot.utils.UtilityServices;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +26,23 @@ public class CategoryController extends UtilityController<Category, String> {
      @Override
      public ApiResponse<Category> getById(@PathVariable String id) {
           return super.getById(id);
+     }
+
+     @PostMapping()
+     @Override
+     public ApiResponse<Category> save(@RequestBody Category entity) {
+          return super.save(entity);
+     }
+
+     @PutMapping("/{id}")
+     @Override
+     public ApiResponse<Category> update(@RequestBody Category entity, @PathVariable String id) {
+          return super.update(entity, id);
+     }
+
+     @DeleteMapping("/{id}")
+     @Override
+     public ApiResponse<Void> deleteById(@PathVariable String id) {
+          return super.deleteById(id);
      }
 }
