@@ -1,11 +1,15 @@
 package com.spring.sneakzoneofflineboot.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
 
@@ -15,8 +19,8 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "staffs")
-public class Staff {
+@Table(name = "customers")
+public class Customer {
      @Id
      @Size(max = 255)
      @ColumnDefault("uuid()")
@@ -25,8 +29,8 @@ public class Staff {
 
      @Size(max = 100)
      @NotNull
-     @Column(name = "staff_code", nullable = false, length = 100)
-     private String staffCode;
+     @Column(name = "customer_code", nullable = false, length = 100)
+     private String customerCode;
 
      @Size(max = 255)
      @ColumnDefault("''")
@@ -58,19 +62,13 @@ public class Staff {
      private String email;
 
      @Size(max = 255)
-     @NotNull
-     @Column(name = "username", nullable = false)
-     private String username;
-
-     @Size(max = 255)
      @ColumnDefault("''")
      @Column(name = "password")
      private String password;
 
-     @Size(max = 10)
-     @NotNull
-     @Column(name = "role", nullable = false, length = 10)
-     private String role;
+     @ColumnDefault("0.00000")
+     @Column(name = "accumulated_points", precision = 65, scale = 5)
+     private BigDecimal accumulatedPoints;
 
      @ColumnDefault("current_timestamp()")
      @Column(name = "created_at")
@@ -79,9 +77,5 @@ public class Staff {
      @ColumnDefault("current_timestamp()")
      @Column(name = "updated_at")
      private Instant updatedAt;
-
-     @ColumnDefault("1")
-     @Column(name = "is_active")
-     private Boolean isActive;
 
 }

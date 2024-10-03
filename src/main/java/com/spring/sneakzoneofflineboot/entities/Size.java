@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
@@ -15,25 +14,25 @@ import org.hibernate.annotations.ColumnDefault;
 @Getter
 @Setter
 @Entity
-@Table(name = "brands")
-public class Brand {
+@Table(name = "sizes")
+public class Size {
      @Id
-     @Size(max = 255)
+     @jakarta.validation.constraints.Size(max = 255)
      @ColumnDefault("uuid()")
      @Column(name = "id", nullable = false)
      private String id;
 
-     @Size(max = 100)
+     @jakarta.validation.constraints.Size(max = 100)
      @NotNull
-     @Column(name = "brand_code", nullable = false, length = 100)
-     private String brandCode;
+     @Column(name = "size_code", nullable = false, length = 100)
+     private String sizeCode;
 
-     @Size(max = 255)
+     @jakarta.validation.constraints.Size(max = 255)
      @ColumnDefault("''")
-     @Column(name = "brand_name")
-     private String brandName;
+     @Column(name = "size_name")
+     private String sizeName;
 
-     @Size(max = 255)
+     @jakarta.validation.constraints.Size(max = 255)
      @ColumnDefault("''")
      @Column(name = "description")
      private String description;

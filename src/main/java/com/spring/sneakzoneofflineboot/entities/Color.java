@@ -15,8 +15,8 @@ import org.hibernate.annotations.ColumnDefault;
 @Getter
 @Setter
 @Entity
-@Table(name = "brands")
-public class Brand {
+@Table(name = "colors")
+public class Color {
      @Id
      @Size(max = 255)
      @ColumnDefault("uuid()")
@@ -25,13 +25,13 @@ public class Brand {
 
      @Size(max = 100)
      @NotNull
-     @Column(name = "brand_code", nullable = false, length = 100)
-     private String brandCode;
+     @Column(name = "color_code", nullable = false, length = 100)
+     private String colorCode;
 
      @Size(max = 255)
      @ColumnDefault("''")
-     @Column(name = "brand_name")
-     private String brandName;
+     @Column(name = "color_name")
+     private String colorName;
 
      @Size(max = 255)
      @ColumnDefault("''")

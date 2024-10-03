@@ -8,6 +8,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
 @Builder
@@ -16,51 +17,49 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "product_details")
+public class ProductDetail {
      @Id
      @Size(max = 255)
      @ColumnDefault("uuid()")
      @Column(name = "id", nullable = false)
      private String id;
 
-     @Size(max = 100)
+     @Size(max = 255)
      @NotNull
-     @Column(name = "product_code", nullable = false, length = 100)
-     private String productCode;
+     @Column(name = "id_product", nullable = false)
+     private String idProduct;
 
      @Size(max = 255)
+     @NotNull
+     @ManyToOne
+     @OnDelete(action = OnDeleteAction.CASCADE)
+     @JoinColumn(name = "id_color", nullable = false)
+     private Color idColor;
+
+     @Size(max = 255)
+     @NotNull
+     @ManyToOne
+     @OnDelete(action = OnDeleteAction.CASCADE)
+     @JoinColumn(name = "id_size", nullable = false)
+     private com.spring.sneakzoneofflineboot.entities.Size idSize;
+
+     @ColumnDefault("0")
+     @Column(name = "weight")
+     private Float weight;
+
+     @ColumnDefault("0.00000")
+     @Column(name = "price", precision = 65, scale = 5)
+     private BigDecimal price;
+
+     @ColumnDefault("0")
+     @Column(name = "quantity")
+     private Integer quantity;
+
+     @Size(max = 30)
      @ColumnDefault("''")
-     @Column(name = "product_name")
-     private String productName;
-
-     @Size(max = 255)
-     @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_brand", nullable = false)
-     private Brand idBrand;
-
-     @Size(max = 255)
-     @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_category", nullable = false)
-     private Category idCategory;
-
-     @Size(max = 255)
-     @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_sole", nullable = false)
-     private Sole idSole;
-
-     @Size(max = 255)
-     @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_material", nullable = false)
-     private Material idMaterial;
+     @Column(name = "status", length = 30)
+     private String status;
 
      @ColumnDefault("current_timestamp()")
      @Column(name = "created_at")
