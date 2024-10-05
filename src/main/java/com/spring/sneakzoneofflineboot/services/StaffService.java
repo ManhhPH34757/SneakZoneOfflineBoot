@@ -61,4 +61,14 @@ public class StaffService implements UtilityServices<Staff, String> {
     public void deleteById(String id) {
 
     }
+
+    @Override
+    public Boolean findByName(String name) {
+        return null;
+    }
+
+    @Override
+    public Staff getByName(String name) {
+        return null;
+    }
 }
