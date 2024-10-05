@@ -2,8 +2,12 @@ package com.spring.sneakzoneofflineboot.controllers;
 
 import com.spring.sneakzoneofflineboot.dto.response.ApiResponse;
 import com.spring.sneakzoneofflineboot.entities.Material;
+import com.spring.sneakzoneofflineboot.services.MaterialService;
 import com.spring.sneakzoneofflineboot.utils.UtilityController;
 import com.spring.sneakzoneofflineboot.utils.UtilityServices;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +16,11 @@ import java.util.List;
 @RequestMapping("/materials")
 public class MaterialController extends UtilityController <Material, String> {
 
-     public MaterialController(UtilityServices<Material, String> utilityServices) {
+     private final MaterialService materialService;
+
+     public MaterialController(UtilityServices<Material, String> utilityServices, MaterialService materialService) {
           super(utilityServices);
+          this.materialService = materialService;
      }
 
      @GetMapping()
