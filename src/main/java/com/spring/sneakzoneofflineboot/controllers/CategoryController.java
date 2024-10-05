@@ -1,9 +1,14 @@
 package com.spring.sneakzoneofflineboot.controllers;
 
 import com.spring.sneakzoneofflineboot.dto.response.ApiResponse;
+import com.spring.sneakzoneofflineboot.entities.Brand;
 import com.spring.sneakzoneofflineboot.entities.Category;
+import com.spring.sneakzoneofflineboot.services.CategoryService;
 import com.spring.sneakzoneofflineboot.utils.UtilityController;
 import com.spring.sneakzoneofflineboot.utils.UtilityServices;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,8 +17,11 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController extends UtilityController<Category, String> {
 
-     public CategoryController(UtilityServices<Category, String> utilityServices) {
+     private final CategoryService categoryService;
+
+     public CategoryController(UtilityServices<Category, String> utilityServices, CategoryService categoryService) {
           super(utilityServices);
+          this.categoryService = categoryService;
      }
 
      @GetMapping()
