@@ -62,4 +62,14 @@ public class CustomerService implements UtilityServices<Customer, String> {
     public void deleteById(String id) {
 
     }
+
+    @Override
+    public Boolean findByName(String name) {
+        return null;
+    }
+
+    @Override
+    public Customer getByName(String name) {
+        return null;
+    }
 }
