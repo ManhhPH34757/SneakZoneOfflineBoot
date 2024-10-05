@@ -49,4 +49,14 @@ public class SoleService implements UtilityServices <Sole, String> {
           }
           soleRepository.deleteById(id);
      }
+
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public Sole getByName(String name) {
+          return null;
+     }
 }

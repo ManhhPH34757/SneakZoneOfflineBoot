@@ -32,17 +32,13 @@ public class ProductDetail {
 
      @Size(max = 255)
      @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_color", nullable = false)
-     private Color idColor;
+     @Column(name = "id_color", nullable = false)
+     private String idColor;
 
      @Size(max = 255)
      @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_size", nullable = false)
-     private com.spring.sneakzoneofflineboot.entities.Size idSize;
+     @Column(name = "id_size", nullable = false)
+     private String idSize;
 
      @ColumnDefault("0")
      @Column(name = "weight")

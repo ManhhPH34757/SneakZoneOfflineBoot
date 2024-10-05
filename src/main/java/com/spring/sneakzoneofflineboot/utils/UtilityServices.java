@@ -11,4 +11,6 @@ public interface UtilityServices <E, T>{
      E save(E entity);
      E update(E entity, T id);
      void deleteById(T id);
+     Boolean findByName(String name);
+     E getByName(String name);
 }
