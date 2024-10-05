@@ -6,7 +6,7 @@ spring:
      application:
           name: SneakZoneOfflineBoot
      datasource:
-          url: jdbc:mariadb://localhost:3306/sneak_zoneDB
+          url: jdbc:mariadb://localhost:3306/sneak_zonedb
           username: root
           password: 123456
           driver-class-name: org.mariadb.jdbc.Driver

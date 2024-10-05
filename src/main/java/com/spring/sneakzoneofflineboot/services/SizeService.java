@@ -40,7 +40,7 @@ public class SizeService implements UtilityServices<Size, String> {
 
     @Override
     public Boolean findByName(String name) {
-        return false;
+        return null;
     }
 
     @Override

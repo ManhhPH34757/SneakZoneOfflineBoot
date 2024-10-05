@@ -2,6 +2,7 @@ package com.spring.sneakzoneofflineboot.controllers;
 
 import com.spring.sneakzoneofflineboot.dto.response.ApiResponse;
 import com.spring.sneakzoneofflineboot.entities.Brand;
+import com.spring.sneakzoneofflineboot.services.BrandService;
 import com.spring.sneakzoneofflineboot.utils.UtilityController;
 import com.spring.sneakzoneofflineboot.utils.UtilityServices;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +13,11 @@ import java.util.List;
 @RequestMapping("/brands")
 public class BrandController extends UtilityController<Brand, String> {
 
-     public BrandController(UtilityServices<Brand, String> utilityServices) {
+     private final BrandService brandService;
+
+     public BrandController(UtilityServices<Brand, String> utilityServices, BrandService brandService) {
           super(utilityServices);
+          this.brandService = brandService;
      }
 
      @GetMapping()

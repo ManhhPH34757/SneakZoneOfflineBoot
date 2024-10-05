@@ -29,7 +29,7 @@ public class ApplicationInitConfig {
                if (staffRepository.findByUsername("admin").isEmpty()) {
                     UUID uuid = UUID.randomUUID();
                     Staff staff = Staff.builder()
-                            .id(uuid.toString())
+                         .id(uuid.toString())
                          .staffCode("ST2024183001")
                          .fullName("Admin")
                          .gender("Male")
