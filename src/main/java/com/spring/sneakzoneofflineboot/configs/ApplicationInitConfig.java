@@ -13,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Configuration
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -26,7 +27,9 @@ public class ApplicationInitConfig {
      public ApplicationRunner applicationRunner(StaffRepository staffRepository) {
           return args -> {
                if (staffRepository.findByUsername("admin").isEmpty()) {
+                    UUID uuid = UUID.randomUUID();
                     Staff staff = Staff.builder()
+                            .id(uuid.toString())
                          .staffCode("ST2024183001")
                          .fullName("Admin")
                          .gender("Male")

@@ -1,4 +1,4 @@
-package com.spring.sneakzoneofflineboot.dto.response;
+package com.spring.sneakzoneofflineboot.dto.request;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class StaffResponse {
+public class StaffCreateRequest {
      String id;
      String staffCode;
      String fullName;
@@ -21,9 +21,10 @@ public class StaffResponse {
      String address;
      String email;
      String username;
+     String password;
      String role;
      Instant createdAt;
      Instant updatedAt;
      Boolean isActive;
-     
+
 }
