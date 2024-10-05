@@ -42,4 +42,16 @@ public abstract class UtilityController <E, T>{
                .result(null)
                .build();
      }
+
+     public ApiResponse<Boolean> findByName(String name) {
+          return ApiResponse.<Boolean>builder()
+               .result(utilityServices.findByName(name))
+               .build();
+     }
+
+     public ApiResponse<E> getByName(String name) {
+          return ApiResponse.<E>builder()
+               .result(utilityServices.getByName(name))
+               .build();
+     }
 }

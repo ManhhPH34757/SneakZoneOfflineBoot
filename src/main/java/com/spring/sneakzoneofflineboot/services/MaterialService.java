@@ -8,6 +8,8 @@ import com.spring.sneakzoneofflineboot.utils.UtilityServices;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,5 +50,15 @@ public class MaterialService implements UtilityServices <Material, String> {
                throw new AppException(ErrorCode.MATERIAL_NOT_EXISTED);
           }
           materialRepository.deleteById(id);
+     }
+
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public Material getByName(String name) {
+          return null;
      }
 }

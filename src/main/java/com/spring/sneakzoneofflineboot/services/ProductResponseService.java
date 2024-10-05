@@ -20,8 +20,8 @@ import java.util.List;
 public class ProductResponseService implements UtilityServices<ProductResponse, String> {
      ProductResponseRepository productResponseRepository;
 
-     public Page<ProductResponse> getProductsResponse(Pageable pageable) {
-          return productResponseRepository.getProductsResponse(pageable);
+     public Page<ProductResponse> filterProducts(String productName, String idBrand, String idCategory, String idMaterial, String idSole, Integer min, Integer max, Pageable pageable) {
+          return productResponseRepository.filter(productName, idBrand, idCategory, idMaterial, idSole, min, max, pageable);
      }
 
      @Override
@@ -47,5 +47,15 @@ public class ProductResponseService implements UtilityServices<ProductResponse, 
      @Override
      public void deleteById(String id) {
 
+     }
+
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public ProductResponse getByName(String name) {
+          return null;
      }
 }

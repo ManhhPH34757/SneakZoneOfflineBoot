@@ -21,7 +21,7 @@ public class ProductImageController extends UtilityController<ProductImage, Stri
 
      @PostMapping()
      @Override
-     public ApiResponse<ProductImage> save(ProductImage entity) {
+     public ApiResponse<ProductImage> save(@RequestBody ProductImage entity) {
           return super.save(entity);
      }
 
@@ -30,5 +30,11 @@ public class ProductImageController extends UtilityController<ProductImage, Stri
           return ApiResponse.<List<ProductImage>>builder()
                .result(productImageService.getAllByIdProduct(idProduct))
                .build();
+     }
+
+     @DeleteMapping("/{idProduct}")
+     @Override
+     public ApiResponse<Void> deleteById(@PathVariable String idProduct) {
+          return super.deleteById(idProduct);
      }
 }

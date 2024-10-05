@@ -51,4 +51,14 @@ public class BrandService implements UtilityServices<Brand, String> {
           }
           brandRepository.deleteById(id);
      }
+
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public Brand getByName(String name) {
+          return null;
+     }
 }
