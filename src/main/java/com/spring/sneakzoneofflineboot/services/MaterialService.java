@@ -51,4 +51,14 @@ public class MaterialService implements UtilityServices <Material, String> {
           }
           materialRepository.deleteById(id);
      }
+
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public Material getByName(String name) {
+          return null;
+     }
 }

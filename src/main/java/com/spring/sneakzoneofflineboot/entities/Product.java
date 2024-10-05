@@ -36,31 +36,23 @@ public class Product {
 
      @Size(max = 255)
      @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_brand", nullable = false)
-     private Brand idBrand;
+     @Column(name = "id_brand", nullable = false)
+     private String idBrand;
 
      @Size(max = 255)
      @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_category", nullable = false)
-     private Category idCategory;
+     @Column(name = "id_category", nullable = false)
+     private String idCategory;
 
      @Size(max = 255)
      @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_sole", nullable = false)
-     private Sole idSole;
+     @Column(name = "id_sole", nullable = false)
+     private String idSole;
 
      @Size(max = 255)
      @NotNull
-     @ManyToOne
-     @OnDelete(action = OnDeleteAction.CASCADE)
-     @JoinColumn(name = "id_material", nullable = false)
-     private Material idMaterial;
+     @Column(name = "id_material", nullable = false)
+     private String idMaterial;
 
      @ColumnDefault("current_timestamp()")
      @Column(name = "created_at")

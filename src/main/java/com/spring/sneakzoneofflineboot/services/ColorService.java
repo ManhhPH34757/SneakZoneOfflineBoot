@@ -42,4 +42,14 @@ public class ColorService implements UtilityServices <Color, String> {
      public void deleteById(String id) {
 
      }
+
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public Color getByName(String name) {
+          return null;
+     }
 }
