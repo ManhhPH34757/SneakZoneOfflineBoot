@@ -35,11 +35,28 @@ public class ProductService implements UtilityServices<Product, String> {
 
      @Override
      public Product update(Product entity, String id) {
-          return null;
+          if (!productRepository.existsById(id)) {
+               throw new AppException(ErrorCode.PRODUCT_NOT_EXISTED);
+          }
+          entity.setId(id);
+          return productRepository.save(entity);
      }
 
      @Override
      public void deleteById(String id) {
+          if (!productRepository.existsById(id)) {
+               throw new AppException(ErrorCode.PRODUCT_NOT_EXISTED);
+          }
+          productRepository.deleteById(id);
+     }
 
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public Product getByName(String name) {
+          return null;
      }
 }
