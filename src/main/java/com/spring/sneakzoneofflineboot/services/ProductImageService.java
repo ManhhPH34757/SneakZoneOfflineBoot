@@ -7,8 +7,11 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -32,6 +35,7 @@ public class ProductImageService implements UtilityServices<ProductImage, String
 
      @Override
      public ProductImage save(ProductImage entity) {
+          System.out.println(entity.getId());
           return productImageRepository.save(entity);
      }
 
@@ -40,8 +44,19 @@ public class ProductImageService implements UtilityServices<ProductImage, String
           return null;
      }
 
+     @Transactional
      @Override
-     public void deleteById(String id) {
+     public void deleteById(String idProduct) {
+          productImageRepository.deleteProductImagesByIdProduct(idProduct);
+     }
 
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public ProductImage getByName(String name) {
+          return null;
      }
 }

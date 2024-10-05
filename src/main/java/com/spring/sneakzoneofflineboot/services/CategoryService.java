@@ -49,4 +49,14 @@ public class CategoryService implements UtilityServices <Category, String>{
           }
           categoryRepository.deleteById(id);
      }
+
+     @Override
+     public Boolean findByName(String name) {
+          return false;
+     }
+
+     @Override
+     public Category getByName(String name) {
+          return null;
+     }
 }
