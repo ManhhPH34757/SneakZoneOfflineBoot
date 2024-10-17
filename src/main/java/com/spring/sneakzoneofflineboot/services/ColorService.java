@@ -30,18 +30,26 @@ public class ColorService implements UtilityServices <Color, String> {
 
      @Override
      public Color save(Color entity) {
-          return null;
+          return colorRepository.save(entity);
      }
 
      @Override
      public Color update(Color entity, String id) {
-          return null;
+          if(!colorRepository.existsById(id)){
+               throw new AppException(ErrorCode.COLOR_NOT_EXISTED);
+          }
+          entity.setId(id);
+          return colorRepository.save(entity);
      }
 
      @Override
      public void deleteById(String id) {
-
+          if(!colorRepository.existsById(id)){
+               throw new AppException(ErrorCode.COLOR_NOT_EXISTED);
+          }
+          colorRepository.deleteById(id);
      }
+
 
      @Override
      public Boolean findByName(String name) {
