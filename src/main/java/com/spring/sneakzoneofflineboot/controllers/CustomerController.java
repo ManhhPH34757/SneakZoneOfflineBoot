@@ -28,11 +28,13 @@ public class CustomerController extends UtilityController<Customer, String> {
     @GetMapping()
     public ApiResponse<Page<CustomerResponse>> getAllCustomer(
             @RequestHeader(name = "page", defaultValue = "0") Integer page,
-            @RequestHeader(name = "size", defaultValue = "5") Integer size
+            @RequestHeader(name = "size", defaultValue = "5") Integer size,
+            @RequestParam(required = false) String fullNameOrPhoneNumber
+
     ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("updated_at").descending());
         return ApiResponse.<Page<CustomerResponse>>builder()
-                .result(customerService.getAllCustomer(pageable))
+                .result(customerService.getAllCustomer(fullNameOrPhoneNumber,pageable))
                 .build();
     }
 
@@ -59,5 +61,26 @@ public class CustomerController extends UtilityController<Customer, String> {
     public ApiResponse<Void> deleteById(@PathVariable String id) {
         return super.deleteById(id);
     }
+
+    @GetMapping("/checkCustomerCode")
+    public ApiResponse<Boolean> checkExistsCustomerCode(@RequestParam String customerCode) {
+        return ApiResponse.<Boolean>builder()
+                .result(customerService.checkExistsCustomerCode(customerCode))
+                .build();
+    }
+    @GetMapping("/checkPhoneNumber")
+    public ApiResponse<Boolean> checkExistsPhoneNumber(@RequestParam String phoneNumber) {
+        return ApiResponse.<Boolean>builder()
+                .result(customerService.checkExistsPhoneNumber(phoneNumber))
+                .build();
+    }
+    @GetMapping("/checkEmail")
+    public ApiResponse<Boolean> checkExistsEmail(@RequestParam String email) {
+        return ApiResponse.<Boolean>builder()
+                .result(customerService.checkExistsEmail(email))
+                .build();
+    }
+
+
 }
 

@@ -23,9 +23,12 @@ public interface CustomerResponseRepository extends JpaRepository<CustomerRespon
                     "c.accumulated_points as accumulated_points, " +
                     "c.created_at as created_at, " +
                     "c.updated_at as updated_at "+
-                    "FROM customers c",
+                    "FROM customers c " +
+                    "WHERE c.full_name LIKE CONCAT('%',?1, '%' ) " +
+                    "OR (c.phone_number LIKE  CONCAT(?1, '%' )  " +
+                    "OR  ?1 IS NULL )",
             nativeQuery = true
     )
-    Page<CustomerResponse> getAllCustomer(Pageable pageable);
+    Page<CustomerResponse> getCustomers(String fullNameOrPhoneNumber, Pageable pageable);
 
 }
