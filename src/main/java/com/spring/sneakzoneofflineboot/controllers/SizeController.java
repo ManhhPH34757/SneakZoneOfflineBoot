@@ -14,7 +14,7 @@ public class SizeController extends UtilityController<Size,String> {
     public SizeController(UtilityServices<Size, String> utilityServices) {
         super(utilityServices);
     }
-
+    @GetMapping()
     @Override
     public ApiResponse<List<Size>> getAll() {
         return super.getAll();
@@ -28,11 +28,11 @@ public class SizeController extends UtilityController<Size,String> {
 
     @PostMapping()
     @Override
-    public ApiResponse<Size> save(Size entity) {
+    public ApiResponse<Size> save(@RequestBody Size entity) {
         return super.save(entity);
     }
 
-    @PutMapping()
+    @PutMapping("/{id}")
     @Override
     public ApiResponse<Size> update(@RequestBody Size entity,@PathVariable String id) {
         return super.update(entity, id);

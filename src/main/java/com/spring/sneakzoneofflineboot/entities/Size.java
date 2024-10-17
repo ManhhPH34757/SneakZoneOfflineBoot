@@ -1,9 +1,6 @@
 package com.spring.sneakzoneofflineboot.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -17,8 +14,7 @@ import org.hibernate.annotations.ColumnDefault;
 @Table(name = "sizes")
 public class Size {
      @Id
-     @jakarta.validation.constraints.Size(max = 255)
-     @ColumnDefault("uuid()")
+     @GeneratedValue(strategy = GenerationType.UUID)
      @Column(name = "id", nullable = false)
      private String id;
 

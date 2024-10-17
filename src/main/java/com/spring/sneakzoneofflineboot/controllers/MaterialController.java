@@ -16,11 +16,8 @@ import java.util.List;
 @RequestMapping("/materials")
 public class MaterialController extends UtilityController <Material, String> {
 
-     private final MaterialService materialService;
-
-     public MaterialController(UtilityServices<Material, String> utilityServices, MaterialService materialService) {
+     public MaterialController(UtilityServices<Material, String> utilityServices) {
           super(utilityServices);
-          this.materialService = materialService;
      }
 
      @GetMapping()
