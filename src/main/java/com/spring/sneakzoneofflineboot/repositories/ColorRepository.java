@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface ColorRepository extends JpaRepository<Color, String> {
     Optional<Color> getColorByColorName(String name);
+
 }

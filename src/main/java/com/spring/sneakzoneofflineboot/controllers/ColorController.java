@@ -51,4 +51,5 @@ public class ColorController extends UtilityController<Color, String> {
     public ApiResponse<Color> getByName(String name) {
         return super.getByName(name);
     }
+
 }

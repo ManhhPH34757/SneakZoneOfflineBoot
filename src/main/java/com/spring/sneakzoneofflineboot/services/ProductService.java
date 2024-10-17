@@ -23,6 +23,14 @@ public class ProductService implements UtilityServices<Product, String> {
           return List.of();
      }
 
+     public boolean existsByIdBrand(String idBrand){
+          return productRepository.existsByIdBrand(idBrand);
+     }
+
+     public boolean existsByIdCategory(String idCategory){
+          return productRepository.existsByIdCategory(idCategory);
+     }
+
      @Override
      public Product getById(String id) {
           return productRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.PRODUCT_NOT_EXISTED));

@@ -25,8 +25,8 @@ public class CustomerService implements UtilityServices<Customer, String> {
     CustomerRepository customerRepository;
     CustomerMapper customerMapper;
 
-    public Page<CustomerResponse> getAllCustomer(Pageable pageable){
-        return customerResponseRepository.getAllCustomer(pageable);
+    public Page<CustomerResponse> getAllCustomer(String fullNameOrPhoneNumber,Pageable pageable){
+        return customerResponseRepository.getCustomers(fullNameOrPhoneNumber,pageable);
     }
 
     public CustomerResponse findById(String id){
@@ -39,22 +39,27 @@ public class CustomerService implements UtilityServices<Customer, String> {
 
     @Override
     public List<Customer> getAll() {
-        return List.of();
+        return customerRepository.findAll();
     }
 
     @Override
     public Customer getById(String id) {
-        return null;
+        return customerRepository.findById(id).orElseThrow(()-> new AppException(ErrorCode.USER_NOT_EXISTED));
     }
 
     @Override
     public Customer save(Customer entity) {
-        return null;
+        return customerRepository.save(entity);
     }
 
     @Override
     public Customer update(Customer entity, String id) {
-        return null;
+        if(!customerRepository.existsById(id)){
+            throw new AppException(ErrorCode.USER_NOT_EXISTED);
+        }
+        entity.setId(id);
+        return customerRepository.save(entity);
+
     }
 
     @Override
@@ -70,5 +75,17 @@ public class CustomerService implements UtilityServices<Customer, String> {
     @Override
     public Customer getByName(String name) {
         return null;
+    }
+
+    public Boolean checkExistsCustomerCode(String customerCode){
+        return customerRepository.existsByCustomerCode(customerCode);
+    }
+
+    public Boolean checkExistsPhoneNumber(String phoneNumber){
+        return customerRepository.existsByPhoneNumber(phoneNumber);
+    }
+
+    public Boolean checkExistsEmail(String email){
+        return customerRepository.existsByEmail(email);
     }
 }

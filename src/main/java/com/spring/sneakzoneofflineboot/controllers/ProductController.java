@@ -33,9 +33,9 @@ public class ProductController extends UtilityController<Product, String> {
                                                              @RequestParam(required = false) String idSole,
                                                              @RequestParam(required = false) Integer min,
                                                              @RequestParam(required = false) Integer max,
-                                                             @RequestHeader(value = "page", defaultValue = "0") int page,
+                                                             @RequestHeader(value = "page", defaultValue = "0") int page,//loc
                                                              @RequestHeader(value = "size", defaultValue = "5") int size
-                                                             ) {
+    ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("updated_at").descending());
         return ApiResponse.<Page<ProductResponse>>builder()
                 .result(productResponseService.filterProducts(productName, idBrand, idCategory, idMaterial, idSole, min, max, pageable))
@@ -76,22 +76,37 @@ public class ProductController extends UtilityController<Product, String> {
     @GetMapping("/check-exists-product-code")
     public ApiResponse<Boolean> checkExistsProductCode(@RequestParam String productCode) {
         return ApiResponse.<Boolean>builder()
-               .result(productService.findByProductCode(productCode))
-               .build();
+                .result(productService.findByProductCode(productCode))
+                .build();
     }
 
     @GetMapping("/check-exists-product-name")
     public ApiResponse<Boolean> checkExistsName(@RequestParam String productName) {
         return ApiResponse.<Boolean>builder()
-               .result(productService.findByName(productName))
-               .build();
+                .result(productService.findByName(productName))
+                .build();
     }
 
     @GetMapping("/get-by-product-code")
     public ApiResponse<Product> getByProductCode(@RequestParam String productCode) {
         return ApiResponse.<Product>builder()
-               .result(productService.getByProductCode(productCode))
-               .build();
+                .result(productService.getByProductCode(productCode))
+                .build();
+    }
+
+    @GetMapping("/checkExistsByIdBrand")
+    public ApiResponse<Boolean> checkExistsByIdBrand(@RequestParam String idBrand) {
+        return ApiResponse.<Boolean>builder()
+                .result(productService.existsByIdBrand(idBrand))
+                .build();
+    }
+
+    @GetMapping("/checkExistsByIdCategory")
+    public ApiResponse<Boolean> checkExistsByIdCategory(@RequestParam String idCategory) {
+        return ApiResponse.<Boolean>builder()
+                .result(productService.existsByIdCategory(idCategory))
+                .build();
+
     }
 
 }
