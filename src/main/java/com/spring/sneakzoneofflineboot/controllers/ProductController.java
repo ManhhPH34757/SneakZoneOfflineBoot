@@ -30,7 +30,7 @@ public class ProductController extends UtilityController<Product, String> {
                                                              @RequestParam(required = false) String idSole,
                                                              @RequestParam(required = false) Integer min,
                                                              @RequestParam(required = false) Integer max,
-                                                             @RequestHeader(value = "page", defaultValue = "0") int page,
+                                                             @RequestHeader(value = "page", defaultValue = "0") int page,//loc
                                                              @RequestHeader(value = "size", defaultValue = "5") int size
                                                              ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("updated_at").descending());

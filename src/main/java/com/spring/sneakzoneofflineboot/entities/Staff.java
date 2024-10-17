@@ -65,7 +65,7 @@ public class Staff {
      @Size(max = 255)
      @ColumnDefault("''")
      @Column(name = "password")
-     private String password;
+          private String password;
 
      @Size(max = 10)
      @NotNull

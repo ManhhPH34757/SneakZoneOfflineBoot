@@ -30,36 +30,43 @@ public class StaffService implements UtilityServices<Staff, String> {
     }
 
     public StaffResponse findById(String id) {
-        if (!staffRepository.existsById(Integer.valueOf(id))){
+        if (!staffRepository.existsById(id)){
             throw new AppException(ErrorCode.USER_NOT_EXISTED);
         }
-        return staffMapper.toStaffResponse(staffRepository.findById(Integer.valueOf(id)).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED)));
+        return staffMapper.toStaffResponse(staffRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED)));
     }
 
 
     @Override
     public List<Staff> getAll() {
-        return staffRepository.findAll();
+        return staffRepository.getAll();
     }
 
     @Override
     public Staff getById(String id) {
-        return null;
+        return staffRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
     }
 
     @Override
     public Staff save(Staff entity) {
-        return null;
+        return staffRepository.save(entity);
     }
 
     @Override
     public Staff update(Staff entity, String id) {
-        return null;
+        if (!staffRepository.existsById(id)) {
+           throw new AppException(ErrorCode.USER_NOT_EXISTED);
+        }
+        entity.setId(id);
+        return staffRepository.save(entity);
     }
 
     @Override
     public void deleteById(String id) {
-
+        if (staffRepository.existsById(id)){
+            throw new AppException(ErrorCode.USER_NOT_EXISTED);
+        }
+        staffRepository.deleteById(id);
     }
 
     @Override
@@ -71,4 +78,22 @@ public class StaffService implements UtilityServices<Staff, String> {
     public Staff getByName(String name) {
         return null;
     }
+
+    public Boolean findByStaffCode(String staffCode) {
+        return staffRepository.existsByStaffCode(staffCode);
+    }
+
+    public Boolean findByEmail(String email) {
+        return staffRepository.existsByEmail(email);
+    }
+
+    public Boolean findByPhoneNumber(String phoneNumber) {
+        return staffRepository.existsByPhoneNumber(phoneNumber);
+    }
+
+    public Boolean findByUsername(String username) {
+        return staffRepository.existsByUsername(username);
+    }
+
+
 }
