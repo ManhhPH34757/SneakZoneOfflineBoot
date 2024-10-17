@@ -4,6 +4,7 @@ import com.spring.sneakzoneofflineboot.dto.response.ApiResponse;
 import com.spring.sneakzoneofflineboot.dto.response.ProductResponse;
 import com.spring.sneakzoneofflineboot.entities.Product;
 import com.spring.sneakzoneofflineboot.services.ProductResponseService;
+import com.spring.sneakzoneofflineboot.services.ProductService;
 import com.spring.sneakzoneofflineboot.utils.UtilityController;
 import com.spring.sneakzoneofflineboot.utils.UtilityServices;
 import org.springframework.data.domain.Page;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/products")
 public class ProductController extends UtilityController<Product, String> {
     private final ProductResponseService productResponseService;
+    private final ProductService productService;
 
-    public ProductController(UtilityServices<Product, String> utilityServices, ProductResponseService productResponseService) {
+    public ProductController(UtilityServices<Product, String> utilityServices, ProductResponseService productResponseService, ProductService productService) {
         super(utilityServices);
         this.productResponseService = productResponseService;
+        this.productService = productService;
     }
 
     @GetMapping()
@@ -30,7 +33,7 @@ public class ProductController extends UtilityController<Product, String> {
                                                              @RequestParam(required = false) String idSole,
                                                              @RequestParam(required = false) Integer min,
                                                              @RequestParam(required = false) Integer max,
-                                                             @RequestHeader(value = "page", defaultValue = "0") int page,
+                                                             @RequestHeader(value = "page", defaultValue = "0") int page,//loc
                                                              @RequestHeader(value = "size", defaultValue = "5") int size
                                                              ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("updated_at").descending());
@@ -62,4 +65,19 @@ public class ProductController extends UtilityController<Product, String> {
     public ApiResponse<Void> deleteById(@PathVariable String id) {
         return super.deleteById(id);
     }
+
+    @GetMapping("/checkExistsByIdBrand")
+    public ApiResponse<Boolean> checkExistsByIdBrand(@RequestParam String idBrand){
+        return ApiResponse.<Boolean>builder()
+                .result(productService.existsByIdBrand(idBrand))
+                .build();
+    }
+
+    @GetMapping("/checkExistsByIdCategory")
+    public ApiResponse<Boolean> checkExistsByIdCategory(@RequestParam String idCategory){
+        return ApiResponse.<Boolean>builder()
+                .result(productService.existsByIdCategory(idCategory))
+                .build();
+    }
+
 }

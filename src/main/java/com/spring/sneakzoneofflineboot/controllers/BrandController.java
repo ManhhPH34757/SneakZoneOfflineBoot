@@ -13,11 +13,8 @@ import java.util.List;
 @RequestMapping("/brands")
 public class BrandController extends UtilityController<Brand, String> {
 
-     private final BrandService brandService;
-
-     public BrandController(UtilityServices<Brand, String> utilityServices, BrandService brandService) {
+     public BrandController(UtilityServices<Brand, String> utilityServices) {
           super(utilityServices);
-          this.brandService = brandService;
      }
 
      @GetMapping()
