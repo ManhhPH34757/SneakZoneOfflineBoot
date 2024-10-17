@@ -40,7 +40,7 @@ public class StaffService implements UtilityServices<Staff, String> {
 
     @Override
     public List<Staff> getAll() {
-        return staffRepository.getAll();
+        return List.of();
     }
 
     @Override
