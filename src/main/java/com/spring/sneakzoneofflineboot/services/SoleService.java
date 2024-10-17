@@ -57,6 +57,6 @@ public class SoleService implements UtilityServices <Sole, String> {
 
      @Override
      public Sole getByName(String name) {
-          return null;
+          return soleRepository.getSoleBySoleName(name).orElse(null);
      }
 }

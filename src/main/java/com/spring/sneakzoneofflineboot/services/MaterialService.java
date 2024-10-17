@@ -59,6 +59,6 @@ public class MaterialService implements UtilityServices <Material, String> {
 
      @Override
      public Material getByName(String name) {
-          return null;
+          return materialRepository.getMaterialByMaterialName(name).orElse(null);
      }
 }

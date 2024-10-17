@@ -50,6 +50,6 @@ public class ColorService implements UtilityServices <Color, String> {
 
      @Override
      public Color getByName(String name) {
-          return null;
+          return colorRepository.getColorByColorName(name).orElse(null);
      }
 }

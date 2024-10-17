@@ -4,6 +4,7 @@ import com.spring.sneakzoneofflineboot.dto.response.ApiResponse;
 import com.spring.sneakzoneofflineboot.dto.response.ProductResponse;
 import com.spring.sneakzoneofflineboot.entities.Product;
 import com.spring.sneakzoneofflineboot.services.ProductResponseService;
+import com.spring.sneakzoneofflineboot.services.ProductService;
 import com.spring.sneakzoneofflineboot.utils.UtilityController;
 import com.spring.sneakzoneofflineboot.utils.UtilityServices;
 import org.springframework.data.domain.Page;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/products")
 public class ProductController extends UtilityController<Product, String> {
     private final ProductResponseService productResponseService;
+    private final ProductService productService;
 
-    public ProductController(UtilityServices<Product, String> utilityServices, ProductResponseService productResponseService) {
+    public ProductController(UtilityServices<Product, String> utilityServices, ProductResponseService productResponseService, ProductService productService) {
         super(utilityServices);
         this.productResponseService = productResponseService;
+        this.productService = productService;
     }
 
     @GetMapping()
@@ -45,10 +48,17 @@ public class ProductController extends UtilityController<Product, String> {
         return super.save(entity);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/edit/{id}")
     @Override
     public ApiResponse<Product> getById(@PathVariable String id) {
         return super.getById(id);
+    }
+
+    @GetMapping("/{id}")
+    public ApiResponse<ProductResponse> getProductById(@PathVariable String id) {
+        return ApiResponse.<ProductResponse>builder()
+                .result(productResponseService.getById(id))
+                .build();
     }
 
     @PutMapping("/{id}")
@@ -62,4 +72,26 @@ public class ProductController extends UtilityController<Product, String> {
     public ApiResponse<Void> deleteById(@PathVariable String id) {
         return super.deleteById(id);
     }
+
+    @GetMapping("/check-exists-product-code")
+    public ApiResponse<Boolean> checkExistsProductCode(@RequestParam String productCode) {
+        return ApiResponse.<Boolean>builder()
+               .result(productService.findByProductCode(productCode))
+               .build();
+    }
+
+    @GetMapping("/check-exists-product-name")
+    public ApiResponse<Boolean> checkExistsName(@RequestParam String productName) {
+        return ApiResponse.<Boolean>builder()
+               .result(productService.findByName(productName))
+               .build();
+    }
+
+    @GetMapping("/get-by-product-code")
+    public ApiResponse<Product> getByProductCode(@RequestParam String productCode) {
+        return ApiResponse.<Product>builder()
+               .result(productService.getByProductCode(productCode))
+               .build();
+    }
+
 }

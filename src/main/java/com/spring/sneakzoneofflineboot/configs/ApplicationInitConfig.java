@@ -26,7 +26,7 @@ public class ApplicationInitConfig {
      @Bean
      public ApplicationRunner applicationRunner(StaffRepository staffRepository) {
           return args -> {
-               if (staffRepository.findByUsername("admin").isEmpty()) {
+               if (staffRepository.findByUsernameAndIsActive("admin", true).isEmpty()) {
                     UUID uuid = UUID.randomUUID();
                     Staff staff = Staff.builder()
                          .id(uuid.toString())

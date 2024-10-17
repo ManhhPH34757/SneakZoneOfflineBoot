@@ -52,11 +52,20 @@ public class ProductService implements UtilityServices<Product, String> {
 
      @Override
      public Boolean findByName(String name) {
-          return false;
+          return productRepository.existsByProductName(name);
      }
 
      @Override
      public Product getByName(String name) {
           return null;
      }
+
+     public Boolean findByProductCode(String productCode) {
+          return productRepository.existsByProductCode(productCode);
+     }
+
+     public Product getByProductCode(String productCode) {
+          return productRepository.getProductByProductCode(productCode).orElse(null);
+     }
+
 }

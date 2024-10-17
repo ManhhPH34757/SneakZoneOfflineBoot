@@ -15,3 +15,9 @@ spring:
           open-in-view: true
 jwt:
      secret-key: SpS+ptkpqPnbQy03HX0YR3KR+yMNI4lr1NsF7Ao6P5biJx9B1KJm4Sv+6vQfLV4d
+cloudinary:
+     cloud:
+          name: djdffx20q
+     api:
+          key: 757294218891624
+          secret: p5ZI7RQWNy_r_4_vfJe09blxIFQ

@@ -16,11 +16,8 @@ import java.util.List;
 @RequestMapping("/materials")
 public class MaterialController extends UtilityController <Material, String> {
 
-     private final MaterialService materialService;
-
-     public MaterialController(UtilityServices<Material, String> utilityServices, MaterialService materialService) {
+     public MaterialController(UtilityServices<Material, String> utilityServices) {
           super(utilityServices);
-          this.materialService = materialService;
      }
 
      @GetMapping()
@@ -51,5 +48,11 @@ public class MaterialController extends UtilityController <Material, String> {
      @Override
      public ApiResponse<Void> deleteById(@PathVariable String id) {
           return super.deleteById(id);
+     }
+
+     @GetMapping("/findByName")
+     @Override
+     public ApiResponse<Material> getByName(String name) {
+          return super.getByName(name);
      }
 }

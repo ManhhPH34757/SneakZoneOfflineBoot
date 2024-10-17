@@ -17,11 +17,8 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController extends UtilityController<Category, String> {
 
-     private final CategoryService categoryService;
-
-     public CategoryController(UtilityServices<Category, String> utilityServices, CategoryService categoryService) {
+     public CategoryController(UtilityServices<Category, String> utilityServices) {
           super(utilityServices);
-          this.categoryService = categoryService;
      }
 
      @GetMapping()
@@ -52,5 +49,11 @@ public class CategoryController extends UtilityController<Category, String> {
      @Override
      public ApiResponse<Void> deleteById(@PathVariable String id) {
           return super.deleteById(id);
+     }
+
+     @GetMapping("/findByName")
+     @Override
+     public ApiResponse<Category> getByName(String name) {
+          return super.getByName(name);
      }
 }

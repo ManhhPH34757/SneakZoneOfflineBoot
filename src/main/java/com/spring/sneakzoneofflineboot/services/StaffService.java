@@ -11,6 +11,7 @@ import com.spring.sneakzoneofflineboot.utils.UtilityServices;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -30,10 +31,10 @@ public class StaffService implements UtilityServices<Staff, String> {
     }
 
     public StaffResponse findById(String id) {
-        if (!staffRepository.existsById(Integer.valueOf(id))){
+        if (!staffRepository.existsById(id)){
             throw new AppException(ErrorCode.USER_NOT_EXISTED);
         }
-        return staffMapper.toStaffResponse(staffRepository.findById(Integer.valueOf(id)).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED)));
+        return staffMapper.toStaffResponse(staffRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED)));
     }
 
 

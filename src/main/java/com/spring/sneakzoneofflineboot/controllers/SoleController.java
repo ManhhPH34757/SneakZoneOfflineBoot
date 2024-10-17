@@ -45,4 +45,10 @@ public class SoleController extends UtilityController <Sole, String> {
      public ApiResponse<Void> deleteById(@PathVariable String id) {
           return super.deleteById(id);
      }
+
+     @GetMapping("/findByName")
+     @Override
+     public ApiResponse<Sole> getByName(String name) {
+          return super.getByName(name);
+     }
 }

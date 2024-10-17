@@ -38,7 +38,7 @@ public class AuthService {
      String SECRET_KEY;
 
      public AccountResponse authenticated(AccountRequest request) {
-          var staff = staffRepository.findByUsername(request.getUsername()).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+          var staff = staffRepository.findByUsernameAndIsActive(request.getUsername(), true).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
           boolean authenticated = checkPassword(request.getPassword(), staff.getPassword());
           if (!authenticated) {
                throw new AppException(ErrorCode.UNAUTHENTICATED);

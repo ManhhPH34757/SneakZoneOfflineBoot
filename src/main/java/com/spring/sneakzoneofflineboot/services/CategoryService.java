@@ -59,6 +59,6 @@ public class CategoryService implements UtilityServices <Category, String>{
 
      @Override
      public Category getByName(String name) {
-          return null;
+          return categoryRepository.getCategoryByCategoryName(name).orElse(null);
      }
 }

@@ -1,6 +1,9 @@
 package com.spring.sneakzoneofflineboot.services;
 
 import com.spring.sneakzoneofflineboot.entities.Size;
+import com.spring.sneakzoneofflineboot.enums.ErrorCode;
+import com.spring.sneakzoneofflineboot.exceptions.AppException;
+import com.spring.sneakzoneofflineboot.repositories.SizeRepository;
 import com.spring.sneakzoneofflineboot.utils.UtilityServices;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +16,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SizeService implements UtilityServices<Size, String> {
+    SizeRepository sizeRepository;
     @Override
     public List<Size> getAll() {
-        return List.of();
+        return sizeRepository.findAll();
     }
 
     @Override
     public Size getById(String id) {
-        return null;
+        return sizeRepository.findById(id).orElseThrow(() -> new AppException(ErrorCode.SIZE_NOT_EXISTED));
     }
 
     @Override
@@ -45,6 +49,6 @@ public class SizeService implements UtilityServices<Size, String> {
 
     @Override
     public Size getByName(String name) {
-        return null;
+        return sizeRepository.getSizeBySizeName(name).orElse(null);
     }
 }

@@ -11,10 +11,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/sizes")
 public class SizeController extends UtilityController<Size,String> {
+
     public SizeController(UtilityServices<Size, String> utilityServices) {
         super(utilityServices);
     }
 
+    @GetMapping()
     @Override
     public ApiResponse<List<Size>> getAll() {
         return super.getAll();
@@ -42,5 +44,11 @@ public class SizeController extends UtilityController<Size,String> {
     @Override
     public ApiResponse<Void> deleteById(@PathVariable String id) {
         return super.deleteById(id);
+    }
+
+    @GetMapping("/findByName")
+    @Override
+    public ApiResponse<Size> getByName(String name) {
+        return super.getByName(name);
     }
 }

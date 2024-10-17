@@ -8,8 +8,6 @@ import com.spring.sneakzoneofflineboot.utils.UtilityServices;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,11 +52,11 @@ public class BrandService implements UtilityServices<Brand, String> {
 
      @Override
      public Boolean findByName(String name) {
-          return false;
+          return (getByName(name) != null);
      }
 
      @Override
      public Brand getByName(String name) {
-          return null;
+          return brandRepository.getBrandByBrandName(name).orElse(null);
      }
 }

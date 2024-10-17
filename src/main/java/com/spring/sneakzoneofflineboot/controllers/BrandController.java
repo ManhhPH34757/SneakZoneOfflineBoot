@@ -13,11 +13,8 @@ import java.util.List;
 @RequestMapping("/brands")
 public class BrandController extends UtilityController<Brand, String> {
 
-     private final BrandService brandService;
-
-     public BrandController(UtilityServices<Brand, String> utilityServices, BrandService brandService) {
+     public BrandController(UtilityServices<Brand, String> utilityServices) {
           super(utilityServices);
-          this.brandService = brandService;
      }
 
      @GetMapping()
@@ -48,5 +45,11 @@ public class BrandController extends UtilityController<Brand, String> {
      @Override
      public ApiResponse<Void> deleteById(@PathVariable String id) {
           return super.deleteById(id);
+     }
+
+     @GetMapping("/findByName")
+     @Override
+     public ApiResponse<Brand> getByName(@RequestParam(defaultValue = "") String name) {
+          return super.getByName(name);
      }
 }
